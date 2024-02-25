@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="cz">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Správa financí</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="finance.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-grey bg-grey" style="background-color: rgba(224, 222, 222, 0.436)">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" style="color:rgb(0, 0, 0)" href="finance.html">Domů</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" style="color:rgb(0, 0, 0)" href="pv.html">Příjmi a Výdaje</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" style="color:rgb(0, 0, 0)" href="dph.html">Výpočet DPH</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" style="color:rgb(0, 0, 0)" href="prevod.html">Převod měn</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" style="color:rgb(0, 0, 0)" href="kalkulacka.html">Kalkulačka</a>
+                </li>
+                <button class="btn btn-outline-success" type="submit">Přihlásit se</button>
+            </ul>
+        </div>
+    </nav>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+    }
+    .container {
+        max-width: 400px;
+        margin: 100px auto;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    h2 {
+        text-align: center;
+    }
+    .form-group {
+        margin-bottom: 20px;
+    }
+    label {
+        display: block;
+        margin-bottom: 5px;
+    }
+    input[type="number"] {
+        width: 100%;
+        padding: 8px;
+        font-size: 16px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+    }
+    .result {
+        background-color: #f9f9f9;
+        padding: 10px;
+        border-radius: 5px;
+        text-align: center;
+    }
+</style>
+</head>
+<body>
+<div class="container">
+    <h2>Kalkulačka spoření/investic</h2>
+    <div class="form-group">
+        <label for="initialAmount">Počáteční částka:</label>
+        <input type="number" id="initialAmount" placeholder="Zadejte počáteční částku">
+    </div>
+    <div class="form-group">
+        <label for="monthlyDeposit">Měsíční vklad:</label>
+        <input type="number" id="monthlyDeposit" placeholder="Zadejte měsíční vklad">
+    </div>
+    <div class="form-group">
+        <label for="interestRate">Roční úroková sazba (%):</label>
+        <input type="number" id="interestRate" placeholder="Zadejte úrokovou sazbu">
+    </div>
+    <div class="form-group">
+        <label for="years">Doba trvání (v letech):</label>
+        <input type="number" id="years" placeholder="Zadejte dobu trvání v letech">
+    </div>
+    <button onclick="calculateFutureValue()">Spočítat</button>
+    <div class="result">
+        <p>Odhadovaná budoucí hodnota:</p>
+        <p id="futureValue">0</p>
+    </div>
+</div>
+
+<script>
+    function calculateFutureValue() {
+        var initialAmount = parseFloat(document.getElementById('initialAmount').value);
+        var monthlyDeposit = parseFloat(document.getElementById('monthlyDeposit').value);
+        var interestRate = parseFloat(document.getElementById('interestRate').value) / 100; // Convert to decimal
+        var years = parseInt(document.getElementById('years').value);
+        
+        var months = years * 12;
+        var monthlyInterestRate = interestRate / 12;
+        
+        var futureValue = initialAmount;
+        for (var i = 0; i < months; i++) {
+            futureValue = futureValue * (1 + monthlyInterestRate) + monthlyDeposit;
+        }
+
+        document.getElementById('futureValue').innerText = futureValue.toFixed(2);
+    }
+</script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+</body>
+</html>

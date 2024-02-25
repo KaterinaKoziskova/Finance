@@ -1,0 +1,12 @@
+#transaction-form {
+    margin-bottom: 20px;
+  }
+  #transaction-list {
+    margin-bottom: 20px;
+  }
+  #chart-container {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
